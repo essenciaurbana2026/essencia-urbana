@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Essencia Urbana - Perfumes y fragancias para expresar tu estilo.">
+  <title>Essencia Urbana | Perfumes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--black:#0b0b0b;--dark:#151515;--gold:#d4af5a;--cream:#f7f3eb;--muted:#a9a9a9;--white:#fff}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:"DM Sans",sans-serif;background:var(--black);color:var(--white);line-height:1.5}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .container{width:min(1120px,92%);margin:auto}
+    header{position:sticky;top:0;z-index:20;background:rgba(11,11,11,.94);backdrop-filter:blur(12px);border-bottom:1px solid #252525}
+    nav{height:74px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-family:"Playfair Display",serif;font-size:25px;letter-spacing:.5px}
+    .logo span{color:var(--gold)}
+    .navlinks{display:flex;gap:28px;font-size:14px}
+    .navlinks a:hover{color:var(--gold)}
+    .menu{display:none;background:none;border:0;color:white;font-size:27px}
+    .hero{min-height:620px;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden;background:
+      radial-gradient(circle at 50% 35%,rgba(212,175,90,.18),transparent 30%),
+      linear-gradient(135deg,#090909,#191612 55%,#090909)}
+    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 65%,#0b0b0b)}
+    .hero-content{position:relative;z-index:1;max-width:760px;padding:80px 0}
+    .eyebrow{color:var(--gold);font-size:13px;letter-spacing:4px;text-transform:uppercase;margin-bottom:18px}
+    h1{font-family:"Playfair Display",serif;font-size:clamp(48px,9vw,88px);line-height:1.02;margin-bottom:20px}
+    .hero p{color:#ddd;font-size:18px;max-width:600px;margin:0 auto 30px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--gold);background:var(--gold);color:#111;padding:13px 24px;border-radius:999px;font-weight:700;cursor:pointer;transition:.2s}
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+    .btn.outline{background:transparent;color:white}
+    .section{padding:78px 0}
+    .section-title{text-align:center;margin-bottom:40px}
+    .section-title h2{font-family:"Playfair Display",serif;font-size:38px}
+    .section-title p{color:var(--muted);margin-top:8px}
+    .filters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+    .filter{border:1px solid #333;background:#151515;color:#ddd;border-radius:999px;padding:9px 17px;cursor:pointer}
+    .filter.active,.filter:hover{border-color:var(--gold);color:var(--gold)}
+    .products{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .card{background:#151515;border:1px solid #292929;border-radius:18px;overflow:hidden;transition:.25s}
+    .card:hover{transform:translateY(-5px);border-color:#4b4029}
+    .product-img{height:270px;background:linear-gradient(135deg,#24211d,#0e0e0e);display:grid;place-items:center;position:relative;overflow:hidden}
+    .bottle{width:105px;height:170px;border:2px solid #777;border-radius:16px 16px 22px 22px;background:linear-gradient(90deg,rgba(255,255,255,.2),transparent 25%,rgba(212,175,90,.28));position:relative;box-shadow:0 20px 35px rgba(0,0,0,.5)}
+    .bottle:before{content:"";position:absolute;width:43px;height:34px;top:-35px;left:29px;background:#181818;border:2px solid #777;border-bottom:0;border-radius:7px 7px 0 0}
+    .bottle:after{content:"ESSENCIA";position:absolute;left:9px;right:9px;top:65px;padding:7px 2px;text-align:center;font-size:9px;letter-spacing:1px;color:var(--gold);border:1px solid rgba(212,175,90,.5)}
+    .card-body{padding:20px}
+    .tag{color:var(--gold);font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
+    .card h3{font-family:"Playfair Display",serif;font-size:22px;margin:6px 0}
+    .card p{color:#aaa;font-size:13px;min-height:40px}
+    .price-row{display:flex;justify-content:space-between;align-items:center;margin-top:17px}
+    .price{font-size:21px;font-weight:700}
+    .buy{border:0;background:var(--gold);color:#111;border-radius:9px;padding:9px 13px;font-weight:700;cursor:pointer}
+    .about{background:var(--cream);color:#151515}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}
+    .about h2{font-family:"Playfair Display",serif;font-size:40px;margin-bottom:15px}
+    .about p{color:#555;margin-bottom:15px}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+    .feature{padding:25px;background:#eee7da;border-radius:16px}
+    .feature strong{display:block;margin-bottom:7px}
+    .feature span{font-size:13px;color:#666}
+    .contact{background:#111}
+    .contact-box{background:linear-gradient(135deg,#1c1914,#101010);border:1px solid #39301e;border-radius:24px;padding:45px;text-align:center}
+    .contact-box h2{font-family:"Playfair Display",serif;font-size:36px;margin-bottom:10px}
+    .contact-box p{color:#aaa;margin-bottom:24px}
+    footer{border-top:1px solid #242424;padding:30px 0;color:#888;font-size:13px}
+    footer .container{display:flex;justify-content:space-between;gap:15px}
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:50;align-items:center;justify-content:center;padding:20px}
+    .modal.show{display:flex}
+    .modal-box{width:min(470px,100%);background:#171717;border:1px solid #393939;border-radius:20px;padding:28px}
+    .modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    .close{background:none;border:0;color:#aaa;font-size:25px;cursor:pointer}
+    label{display:block;font-size:13px;color:#bbb;margin:12px 0 6px}
+    input,textarea{width:100%;background:#0d0d0d;color:white;border:1px solid #333;border-radius:10px;padding:12px}
+    textarea{resize:vertical;min-height:80px}
+    .modal .btn{width:100%;margin-top:16px}
+    @media(max-width:800px){
+      .navlinks{display:none}.menu{display:block}
+      .navlinks.open{display:flex;position:absolute;left:0;right:0;top:74px;background:#0b0b0b;padding:20px;flex-direction:column;gap:16px;border-bottom:1px solid #292929}
+      .products{grid-template-columns:repeat(2,1fr)}
+      .about-grid{grid-template-columns:1fr}.features{grid-template-columns:1fr}
+    }
+    @media(max-width:540px){
+      .products{grid-template-columns:1fr}
+      .product-img{height:240px}
+      .hero{min-height:560px}.section{padding:60px 0}
+      .contact-box{padding:30px 20px}
+      footer .container{flex-direction:column;text-align:center}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav class="container">
+    <a class="logo" href="#inicio">Essencia <span>Urbana</span></a>
+    <button class="menu" id="menuBtn" aria-label="Abrir menú">☰</button>
+    <div class="navlinks" id="navlinks">
+      <a href="#inicio">Inicio</a><a href="#catalogo">Catálogo</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="hero-content container">
+    <div class="eyebrow">Fragancias • Estilo • Personalidad</div>
+    <h1>Tu esencia.<br><span style="color:var(--gold)">Tu estilo.</span></h1>
+    <p>Descubre perfumes que hablan de ti. Fragancias seleccionadas para acompañarte todos los días y dejar huella.</p>
+    <a class="btn" href="#catalogo">Ver catálogo</a>
+  </div>
+</section>
+
+<section class="section" id="catalogo">
+  <div class="container">
+    <div class="section-title">
+      <div class="eyebrow">Colección</div>
+      <h2>Encuentra tu fragancia</h2>
+      <p>Elige por categoría y encuentra tu próximo aroma favorito.</p>
+    </div>
+    <div class="filters">
+      <button class="filter active" data-filter="todos">Todos</button>
+      <button class="filter" data-filter="hombre">Hombre</button>
+      <button class="filter" data-filter="mujer">Mujer</button>
+      <button class="filter" data-filter="unisex">Unisex</button>
+    </div>
+    <div class="products" id="products"></div>
+  </div>
+</section>
+
+<section class="section about" id="nosotros">
+  <div class="container about-grid">
+    <div>
+      <div class="eyebrow">Sobre la marca</div>
+      <h2>Una fragancia también cuenta tu historia.</h2>
+      <p>En <strong>Essencia Urbana</strong> creemos que un perfume no es solo un aroma: es parte de tu identidad, tu presencia y tus momentos.</p>
+      <p>Explora nuestra colección y encuentra una esencia que combine con tu personalidad.</p>
+    </div>
+    <div class="features">
+      <div class="feature"><strong>✨ Estilo</strong><span>Fragancias para diferentes personalidades.</span></div>
+      <div class="feature"><strong>📦 Entrega</strong><span>Coordina tu pedido de forma rápida y sencilla.</span></div>
+      <div class="feature"><strong>💬 Atención</strong><span>Te ayudamos a elegir tu fragancia ideal.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contacto">
+  <div class="container">
+    <div class="contact-box">
+      <div class="eyebrow">Pedidos</div>
+      <h2>¿Listo para encontrar tu esencia?</h2>
+      <p>Haz tu pedido directamente por WhatsApp.</p>
+      <button class="btn" id="contactBtn">Hablar por WhatsApp</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <span>© 2026 Essencia Urbana. Todos los derechos reservados.</span>
+    <span>Perfumes • Estilo • Personalidad</span>
+  </div>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="modalTitle">Realizar pedido</h3><button class="close" id="closeModal">×</button></div>
+    <label for="name">Tu nombre</label><input id="name" placeholder="Escribe tu nombre">
+    <label for="quantity">Cantidad</label><input id="quantity" type="number" min="1" value="1">
+    <label for="note">Mensaje adicional</label><textarea id="note" placeholder="Ej.: Quiero coordinar delivery..."></textarea>
+    <button class="btn" id="sendOrder">Enviar pedido por WhatsApp</button>
+  </div>
+</div>
+
+<script>
+  // ===== DATOS EDITABLES =====
+  // Cambia los nombres, precios y categorías de tus productos aquí.
+  const WHATSAPP = "51999999999"; // Reemplaza por tu número con código de Perú, sin + ni espacios.
+
+  const products = [
+    {name:"Essence Black", category:"hombre", price:"S/ 59.90", desc:"Aroma elegante, intenso y moderno."},
+    {name:"Golden Femme", category:"mujer", price:"S/ 59.90", desc:"Una fragancia sofisticada y femenina."},
+    {name:"Urban Night", category:"unisex", price:"S/ 64.90", desc:"Versátil, fresco y perfecto para la noche."},
+    {name:"Royal Man", category:"hombre", price:"S/ 69.90", desc:"Presencia marcada con un toque elegante."},
+    {name:"Velvet Rose", category:"mujer", price:"S/ 64.90", desc:"Dulce, delicado y envolvente."},
+    {name:"Avenue", category:"unisex", price:"S/ 54.90", desc:"Fresco y urbano para todos los días."}
+  ];
+
+  const productsEl = document.getElementById("products");
+  let currentProduct = null;
+
+  function label(cat){ return cat === "hombre" ? "Hombre" : cat === "mujer" ? "Mujer" : "Unisex"; }
+
+  function render(filter="todos"){
+    productsEl.innerHTML = "";
+    products.filter(p => filter==="todos" || p.category===filter).forEach((p,i)=>{
+      const card=document.createElement("article");
+      card.className="card";
+      card.innerHTML=`
+        <div class="product-img"><div class="bottle" aria-label="Imagen de perfume"></div></div>
+        <div class="card-body">
+          <span class="tag">${label(p.category)}</span>
+          <h3>${p.name}</h3>
+          <p>${p.desc}</p>
+          <div class="price-row"><span class="price">${p.price}</span><button class="buy" data-index="${products.indexOf(p)}">Comprar</button></div>
+        </div>`;
+      productsEl.appendChild(card);
+    });
+    document.querySelectorAll(".buy").forEach(b=>b.addEventListener("click",()=>openOrder(products[+b.dataset.index])));
+  }
+
+  document.querySelectorAll(".filter").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));
+      btn.classList.add("active"); render(btn.dataset.filter);
+    });
+  });
+
+  function openOrder(product){
+    currentProduct=product;
+    document.getElementById("modalTitle").textContent=`Pedir ${product.name}`;
+    document.getElementById("modal").classList.add("show");
+  }
+  document.getElementById("closeModal").onclick=()=>document.getElementById("modal").classList.remove("show");
+  document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")e.currentTarget.classList.remove("show")});
+
+  document.getElementById("sendOrder").onclick=()=>{
+    const name=document.getElementById("name").value.trim() || "Cliente";
+    const qty=document.getElementById("quantity").value || 1;
+    const note=document.getElementById("note").value.trim();
+    const msg=`Hola, Essencia Urbana. Soy ${name}. Quiero pedir ${qty} unidad(es) de ${currentProduct.name} (${currentProduct.price}).${note ? " "+note : ""}`;
+    if(WHATSAPP==="51999999999"){alert("Primero reemplaza el número de WhatsApp en el archivo index.html.");return}
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,"_blank");
+  };
+
+  document.getElementById("contactBtn").onclick=()=>{
+    if(WHATSAPP==="51999999999"){alert("Reemplaza el número de WhatsApp en el archivo index.html.");return}
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hola, Essencia Urbana. Quiero información sobre sus perfumes.")}`,"_blank");
+  };
+
+  document.getElementById("menuBtn").onclick=()=>document.getElementById("navlinks").classList.toggle("open");
+  document.querySelectorAll(".navlinks a").forEach(a=>a.onclick=()=>document.getElementById("navlinks").classList.remove("open"));
+  render();
+</script>
+</body>
+</html>
